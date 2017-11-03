@@ -1,5 +1,4 @@
 package com.example.nicoardian.googlemapsapi;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -13,6 +12,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -42,11 +42,28 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             .build();
     GoogleMap m_map;
     boolean mapReady = false;
+    MarkerOptions Indonesia, France, UnitedState, Australia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Indonesia = new MarkerOptions()
+                .position(new LatLng(-6.175392, 106.827178))
+                .title("Monumen Nasional");
+
+        France = new MarkerOptions()
+                .position(new LatLng(48.858270, 2.294509))
+                .title("Eiffel Tower");
+
+        UnitedState = new MarkerOptions()
+                .position(new LatLng(38.897678, -77.036477))
+                .title("The White House");
+
+        Australia = new MarkerOptions()
+                .position(new LatLng(-33.856820, 151.215279))
+                .title("Sydney Opera House");
 
         Button bAustralia = (Button) findViewById(R.id.bAustalia);
         bAustralia.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +105,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapReady = true;
         m_map = map;
         m_map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        m_map.addMarker(Indonesia);
+        m_map.addMarker(France);
+        m_map.addMarker(UnitedState);
+        m_map.addMarker(Australia);
         flyTo(INDONESIA);
     }
 
